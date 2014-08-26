@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:B02430_Hangman" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="B02430_Hangman" targetNamespace="urn:B02430_Hangman" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.xmlsoap.org/wsdl/">
+      <xsd:complexType name="ArrayOfstring">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="xsd:string[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="fetchWordArrayRequest">
+    <wsdl:part name="wordFile" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="fetchWordArrayResponse">
+    <wsdl:part name="fetchResp" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="hideCharactersRequest">
+    <wsdl:part name="hideAns" type="xsd:string" />
+    <wsdl:part name="hideSize" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="hideCharactersResponse">
+    <wsdl:part name="hideResp" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="checkAndReplaceRequest">
+    <wsdl:part name="userInput" type="xsd:string" />
+    <wsdl:part name="checkHidd" type="xsd:string" />
+    <wsdl:part name="checkAns" type="xsd:string" />
+    <wsdl:part name="checkSize" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="checkAndReplaceResponse">
+    <wsdl:part name="checkResp" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="checkGameOverRequest">
+    <wsdl:part name="gameAns" type="xsd:string" />
+    <wsdl:part name="gameAnsHidden" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="checkGameOverResponse">
+    <wsdl:part name="status" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getIntentosRequest" />
+  <wsdl:message name="getIntentosResponse">
+    <wsdl:part name="intentos" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getTimeRequest" />
+  <wsdl:message name="getTimeResponse">
+    <wsdl:part name="time" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="selectRequest" />
+  <wsdl:message name="selectResponse">
+    <wsdl:part name="selectResp" type="wsdl:ArrayOfstring" />
+  </wsdl:message>
+  <wsdl:message name="insertRequest">
+    <wsdl:part name="insertReq" type="xsd:string" />
+    <wsdl:part name="insertReq2" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="insertResponse" />
+  <wsdl:portType name="B02430_HangmanPort">
+    <wsdl:operation name="fetchWordArray">
+      <wsdl:input message="tns:fetchWordArrayRequest" />
+      <wsdl:output message="tns:fetchWordArrayResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="hideCharacters">
+      <wsdl:input message="tns:hideCharactersRequest" />
+      <wsdl:output message="tns:hideCharactersResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="checkAndReplace">
+      <wsdl:input message="tns:checkAndReplaceRequest" />
+      <wsdl:output message="tns:checkAndReplaceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="checkGameOver">
+      <wsdl:input message="tns:checkGameOverRequest" />
+      <wsdl:output message="tns:checkGameOverResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getIntentos">
+      <wsdl:input message="tns:getIntentosRequest" />
+      <wsdl:output message="tns:getIntentosResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getTime">
+      <wsdl:input message="tns:getTimeRequest" />
+      <wsdl:output message="tns:getTimeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="select">
+      <wsdl:input message="tns:selectRequest" />
+      <wsdl:output message="tns:selectResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="insert">
+      <wsdl:input message="tns:insertRequest" />
+      <wsdl:output message="tns:insertResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="B02430_HangmanBinding" type="tns:B02430_HangmanPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="fetchWordArray">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#fetchWordArray" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hideCharacters">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#hideCharacters" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkAndReplace">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#checkAndReplace" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkGameOver">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#checkGameOver" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIntentos">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#getIntentos" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTime">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#getTime" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="select">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#select" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insert">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#insert" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:B02430_Hangman" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="B02430_Hangman">
+    <documentation />
+    <wsdl:port name="B02430_HangmanPort" binding="tns:B02430_HangmanBinding">
+      <soap:address location="http://titanic.ecci.ucr.ac.cr:80/~eb02430/TP2/HangmanService.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

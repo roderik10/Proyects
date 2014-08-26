@@ -1,0 +1,8 @@
+C:\Users\roderik10\Documents\Visual Studio 2010\Projects\Hangman\Hangman\bin\Debug\Hangman.exe.config
+C:\Users\roderik10\Documents\Visual Studio 2010\Projects\Hangman\Hangman\bin\Debug\Hangman.exe
+C:\Users\roderik10\Documents\Visual Studio 2010\Projects\Hangman\Hangman\bin\Debug\Hangman.pdb
+C:\Users\roderik10\Documents\Visual Studio 2010\Projects\Hangman\Hangman\obj\x86\Debug\Hangman.Form1.resources
+C:\Users\roderik10\Documents\Visual Studio 2010\Projects\Hangman\Hangman\obj\x86\Debug\Hangman.Properties.Resources.resources
+C:\Users\roderik10\Documents\Visual Studio 2010\Projects\Hangman\Hangman\obj\x86\Debug\Hangman.csproj.GenerateResource.Cache
+C:\Users\roderik10\Documents\Visual Studio 2010\Projects\Hangman\Hangman\obj\x86\Debug\Hangman.exe
+C:\Users\roderik10\Documents\Visual Studio 2010\Projects\Hangman\Hangman\obj\x86\Debug\Hangman.pdb
