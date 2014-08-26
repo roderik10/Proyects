@@ -1,0 +1,271 @@
+<?xml version="1.0"?>
+
+<!-- Descripción WSDL de la clase Hangman. -->
+
+<definitions name="B02430_Hangman"
+             targetNamespace="urn:B02430_Hangman"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="urn:B02430_Hangman"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+  <!-- Tipos complejos -->
+  <types>
+    <xsd:schema targetNamespace="http://schemas.xmlsoap.org/wsdl/">
+      <xsd:complexType name="ArrayOfstring">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="xsd:string[]" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>  
+  
+  
+  <!--<types xmlns="http://schemas.xmlsoap.org/wsdl/" /> -->
+
+  <!-- Mensajes para comunicarse con la clase Hangman. -->
+             
+  <message name="fetchWordArrayRequest">
+    <part name="wordFile" type="xsd:string" />
+  </message>
+
+  <message name="fetchWordArrayResponse">
+    <part name="fetchResp" type="xsd:string" />
+  </message> 
+  
+
+  <message name="hideCharactersRequest">
+    <part name="hideAns" type="xsd:string" />
+	<part name="hideSize" type="xsd:int" />
+  </message>
+
+  <message name="hideCharactersResponse">
+    <part name="hideResp" type="xsd:string" />
+  </message>
+
+   <message name="checkAndReplaceRequest">
+	<part name="userInput" type="xsd:string" />
+	<part name="checkHidd" type="xsd:string" />
+	<part name="checkAns" type="xsd:string" />
+	<part name="checkSize" type="xsd:int" />
+  </message>
+
+  <message name="checkAndReplaceResponse">
+    <part name="checkResp" type="xsd:string" />
+  </message>
+    
+  <message name="checkGameOverRequest">
+	<part name="gameAns" type="xsd:string" />
+	<part name="gameAnsHidden" type="xsd:string" />
+  </message> 
+
+  <message name="checkGameOverResponse">
+	<part name="status" type="xsd:int"  />
+  </message>
+  
+  <message name="getIntentosRequest"></message>
+  
+  <message name="getIntentosResponse">
+	<part name="intentos" type="xsd:int"/>
+  </message>
+  
+  <message name="getTimeRequest"></message>
+  
+  <message name="getTimeResponse">
+	<part name="time" type="xsd:int"/>
+  </message>
+  
+  <message name="selectRequest"></message>
+
+  <message name="selectResponse">
+    <part name="selectResp" type="ArrayOfstring" />
+  </message>   
+  
+  <message name="insertRequest">
+	<part name="insertReq" type="xsd:string" />
+	<part name="insertReq2" type="xsd:int" />
+  </message>
+  
+  <message name="insertResponse"></message> 
+
+  <!-- Puerto para comunicar con la clase Hangman, "B02430_Hangman" -->
+
+  <portType name="B02430_HangmanPort">
+
+    <operation name="fetchWordArray">
+      <input message="tns:fetchWordArrayRequest" />
+      <output message="tns:fetchWordArrayResponse" />
+    </operation> 
+
+    <operation name="hideCharacters">
+      <input message="tns:hideCharactersRequest" />
+      <output message="tns:hideCharactersResponse" />
+    </operation>
+	
+    <operation name="checkAndReplace">
+      <input message="tns:checkAndReplaceRequest" />
+      <output message="tns:checkAndReplaceResponse" />
+    </operation>
+	
+	<operation name="checkGameOver">
+      <input message="tns:checkGameOverRequest" />
+      <output message="tns:checkGameOverResponse" />
+    </operation>
+	
+	<operation name="getIntentos">
+      <input message="tns:getIntentosRequest" />
+      <output message="tns:getIntentosResponse" />
+    </operation>
+	
+	<operation name="getTime">
+      <input message="tns:getTimeRequest" />
+      <output message="tns:getTimeResponse" />
+    </operation>
+	
+	<operation name="select">
+      <input message="tns:selectRequest" />
+      <output message="tns:selectResponse" />
+    </operation>	
+	
+	<operation name="insert">
+      <input message="tns:insertRequest" />
+      <output message="tns:insertResponse" />
+    </operation>
+
+  </portType>
+
+  <!-- Vinculación de los llamados con el transporte - RPC, SOAP over HTTP -->
+
+  <binding name="B02430_HangmanBinding" type="tns:B02430_HangmanPort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+
+    <operation name="fetchWordArray">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#fetchWordArray" />
+      <input>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation> 
+
+    <operation name="hideCharacters">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#hideCharacters" />
+      <input>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+				   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+				   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+	
+    <operation name="checkAndReplace">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#checkAndReplace" />
+      <input>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+				   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+
+    <operation name="checkGameOver">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#checkGameOver" />
+      <input>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+				   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>  
+	
+    <operation name="getIntentos">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#getIntentos" />
+      <input>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+				   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>  
+	
+    <operation name="getTime">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#getTime" />
+      <input>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+				   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>  
+	
+    <operation name="select">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#select" />
+      <input>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+				   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation> 
+
+    <operation name="insert">
+      <soap:operation soapAction="urn:B02430_Hangman#Hangman#insert" />
+      <input>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+                   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded"
+		           namespace="urn:B02430_Hangman"
+				   encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>  	
+	
+  </binding>
+
+  
+  
+  <!-- Punto de comunicación con la clase Hangman -->
+
+  <service name="B02430_Hangman">
+    <documentation />
+    <port name="B02430_HangmanPort" binding="tns:B02430_HangmanBinding">
+      <soap:address location="http://titanic.ecci.ucr.ac.cr:80/~eb02430/TP2/HangmanService.php" />
+    </port>
+  </service>
+
+</definitions>

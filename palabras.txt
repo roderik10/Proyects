@@ -1,0 +1,15 @@
+perro
+gato
+arbusto
+televisor
+pizarra
+zacate
+estadio
+ahorcado
+manzana
+carretera
+computadora
+lluvia
+autobus
+mochila
+ferrocarril
